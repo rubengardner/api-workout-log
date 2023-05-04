@@ -7,13 +7,14 @@ class Exercise(models.Model):
         ('kg', 'kg'), ('sec', 'sec'),
         ('m', 'm')
     ]
+
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, unique=True)
     
     unit_1 = models.CharField(max_length=40, choices=unit_choices, default='kg')
-    unit_2 = models.CharField(max_length=40, choices=unit_choices, default= None)
+    unit_2 = models.CharField(max_length=40, choices=unit_choices, default= None, blank=True)
    
     class Meta:
         ordering = ['-created_at']
