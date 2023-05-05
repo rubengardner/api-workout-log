@@ -2,7 +2,7 @@ from django.db import models
 from exercises.models import Exercise
 from workouts.models import Workout
 from django.contrib.auth.models import User
-
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 class Set(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

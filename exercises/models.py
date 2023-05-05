@@ -21,3 +21,8 @@ class Exercise(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+
+
+

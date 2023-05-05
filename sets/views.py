@@ -12,7 +12,8 @@ class SetList(generics.ListCreateAPIView):
     queryset = Set.objects.all( ).order_by('-created_at')
     serializer_class = SetSerializer
 
-
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class SetSpecific(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
