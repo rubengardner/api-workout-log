@@ -1,13 +1,13 @@
 from django.db import models
 from exercises.models import Exercise
 from workouts.models import Workout
-from django.contrib.auth.models import User
+
 
 
 class Set(models.Model):
 
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
-    workout = models.ForeignKey(workout, on_delete=models.CASCADE)
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     reps = models.PositiveIntegerField()
