@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import datetime
 
 class Workout(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     date = models.DateField(default=datetime.date.today)
    
