@@ -16,7 +16,9 @@ class WorkoutList(generics.ListCreateAPIView):
     serializer_class = WorkoutSerializer
 
 
-
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        
 class WorkoutSpecific(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = WorkoutSerializer
