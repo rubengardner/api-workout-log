@@ -10,6 +10,8 @@ class SetSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     exercise = serializers.PrimaryKeyRelatedField(queryset=Exercise.objects.all())
     workout = serializers.PrimaryKeyRelatedField(queryset=Workout.objects.all())
+    exercise_unit_1 = serializers.ReadOnlyField(source='exercise.unit_1')
+    exercise_unit_2 = serializers.ReadOnlyField(source='exercise.unit_2')
 
     
     def get_is_owner(self, obj):
@@ -29,5 +31,5 @@ class SetSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'workout_id', 'created_at', 'reps','exercise', 
             'value_of_unit_1', 'value_of_unit_2', 'exercise_name', 'workout',
-            'is_owner'
+            'is_owner', 'exercise_unit_1', 'exercise_unit_2'
         ] 
