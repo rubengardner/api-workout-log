@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Set
-from .models import Exercise
+from exercises.models import Exercise
+from workouts.models import Workout
 
 class SetSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
@@ -8,6 +9,7 @@ class SetSerializer(serializers.ModelSerializer):
     exercise_name = serializers.ReadOnlyField(source='exercise.name')
     is_owner = serializers.SerializerMethodField()
     exercise = serializers.PrimaryKeyRelatedField(queryset=Exercise.objects.all())
+    workout = serializers.PrimaryKeyRelatedField(queryset=Workout.objects.all())
 
     
     def get_is_owner(self, obj):
@@ -19,6 +21,8 @@ class SetSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.is_authenticated:
             self.fields['exercise'].queryset = Exercise.objects.filter(owner=user)
+            self.fields['workout'].queryset = Workout.objects.filter(owner=user)
+
 
     class Meta:
         model = Set
