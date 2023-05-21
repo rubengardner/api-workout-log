@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from rest_framework import status, filters, generics
+from rest_framework import status, filters, generics, permissions
 from rest_framework.views import APIView
 from django.http import Http404
 from .models import Set
@@ -11,6 +11,7 @@ from drf_workoutlog.permissions import IsOwnerOrReadOnly
 class SetList(generics.ListCreateAPIView):
     queryset = Set.objects.all( ).order_by('-created_at')
     serializer_class = SetSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
