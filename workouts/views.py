@@ -22,4 +22,7 @@ class WorkoutList(generics.ListCreateAPIView):
 class WorkoutSpecific(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = WorkoutSerializer
-    queryset = Workout.objects.all().order_by('-created_at')
+    queryset = Workout.objects.annotate(
+        sets_count=Count('set'),
+        exercise_count=Count('set__exercise', distinct=True)
+    ).order_by('-created_at')
