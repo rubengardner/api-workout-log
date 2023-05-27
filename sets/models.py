@@ -4,16 +4,22 @@ from workouts.models import Workout
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+
 class Set(models.Model):
+    """
+    Model for the Set object
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='sets')
+    exercise = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name='sets'
+        )
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     reps = models.PositiveIntegerField()
     value_of_unit_1 = models.IntegerField()
-    value_of_unit_2 = models.IntegerField(default= None, blank=True)
-   
+    value_of_unit_2 = models.IntegerField(default=None, blank=True)
+
     class Meta:
         ordering = ['-created_at']
 

@@ -9,12 +9,19 @@ from drf_workoutlog.permissions import IsOwnerOrReadOnly
 
 
 class ProfileList(generics.ListAPIView):
+    """
+    Return a list of all profiles ordered by 
+    created at
+    """
     queryset = Profile.objects.all().order_by('-created_at')
     serializer_class = ProfileSerializer
 
 
-
 class ProfileSpecific(generics.RetrieveUpdateAPIView):
+    """
+    Retrieve and update an Profile only if the user is
+    the owner of the Profile
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all().order_by('-created_at')

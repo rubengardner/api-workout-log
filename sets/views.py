@@ -9,14 +9,23 @@ from drf_workoutlog.permissions import IsOwnerOrReadOnly
 
 
 class SetList(generics.ListCreateAPIView):
-    queryset = Set.objects.all( ).order_by('-created_at')
+    """
+    Return a list of all sets ordered by 
+    created at
+    """
+    queryset = Set.objects.all().order_by('-created_at')
     serializer_class = SetSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+
 class SetSpecific(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve and update a set only if the user is
+    the owner of the set
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = SetSerializer
     queryset = Set.objects.all().order_by('-created_at')
