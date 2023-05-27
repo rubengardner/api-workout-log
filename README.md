@@ -6,9 +6,9 @@ You can view the live site here - <a href="https://workout-log-api.herokuapp.com
 
 You can view the live API here - <a href="https://workout-log-api.herokuapp.com/" target="_blank" rel="noopener">Workout Log DRF API</a>
 
-You can view the front-end README.md here - <a href="https://github.com/MikeR94/ci-project-portfolio-5" target="_blank" rel="noopener">Workout Log Front-End README</a>
 
- Contents
+
+# Contents
 
 - [**Objective**](#objective)
 - [**Entity Relationship Diagram**](#entity-relationship-diagram)
@@ -17,6 +17,7 @@ You can view the front-end README.md here - <a href="https://github.com/MikeR94/
 - [**Testing**](#testing)
   - [**Manual Testing**](#manual-testing)
 - [**Technologies Used**](#technologies-used)
+- [**PEP8 Validation**](#pep8-validation)
 - [**Bugs**](#bugs)
 - [**Deployment**](#deployment-to-heroku)
 - [**Credits**](#credits)
@@ -30,19 +31,11 @@ You can view the front-end README.md here - <a href="https://github.com/MikeR94/
 The main goal behind developing this API is to ensure a fast, dependable, and secure data delivery system for my Workout Log front-end project. I strive to create straightforward, user-friendly models that accurately represent the project's data requirements. Each API endpoint serves a distinct purpose and undergoes rigorous testing to safeguard against unauthorized data manipulation, ensuring that only users with appropriate permissions can create, modify, or delete data.
 
 
-PICTURE OF RELATIONSHIP
-
-
-[Back to top](#contents)
-
-
 # Entity Relationship Diagram
 
 For creating the entity relationship diagram, I utilized a graph modeling tool called ERDPlus
 
 ![Entity relationship diagram](media/entity-relationship-diagram.png)
-
-[Back to top](#contents)
 
 
 # Database
@@ -126,7 +119,10 @@ value_of_unit_2	|IntegerField	|default=None, blank=True
 | sets   | sets/<int:pk>/       | Returns a single set with a correct ID and a list of all it's values                                                                                  | Pass      |
 
 
+## PEP8 Validation
+After conducting thorough testing of all the files using the CI PEP8 Linter, available at https://pep8ci.herokuapp.com/#, I discovered a few errors initially. While most errors were resolved, some were left unresolved because resolving them would imply improper syntax. These errors are listed and described below.
 
+![PEP8 errors](media/pep8-validator.png)
 
 
 # Bugs
