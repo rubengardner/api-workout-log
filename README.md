@@ -38,7 +38,9 @@ PICTURE OF RELATIONSHIP
 
 # Entity Relationship Diagram
 
-For creating the entity relationship diagram, I utilized a graph modeling tool called Graph Models, which proved to be highly effective in my previous project. This tool allows me to visualize the comprehensive relationships among all the database models. After installing Graph Models and following the necessary steps, I employed dreampuf to present the data in a polished and easily comprehensible manner.
+For creating the entity relationship diagram, I utilized a graph modeling tool called ERDPlus
+
+![Entity relationship diagram](media/entity-relationship-diagram.png)
 
 [Back to top](#contents)
 
