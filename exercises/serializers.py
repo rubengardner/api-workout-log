@@ -11,7 +11,6 @@ class ExerciseSerializer(serializers.ModelSerializer):
     profile_id = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
         source='owner.id',
-        write_only=True,
         required=False
     )
 
