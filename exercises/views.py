@@ -15,6 +15,16 @@ class ExerciseList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        
+
+    def get_queryset(self):
+        profile_id = self.request.query_params.get('profile_id')
+        queryset = super().get_queryset()
+        
+        if profile_id:
+            queryset = queryset.filter(owner__id=profile_id)
+
+        return queryset
 
 class ExerciseSpecific(generics.RetrieveUpdateDestroyAPIView):
     """

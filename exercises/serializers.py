@@ -8,7 +8,17 @@ class ExerciseSerializer(serializers.ModelSerializer):
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source='owner.id',
+        write_only=True,
+        required=False
+    )
+
+    def create(self, validated_data):
+        profile_id = validated_data.pop('owner')['id']
+        exercise = Exercise.objects.create(owner_id=profile_id, **validated_data)
+        return exercise
 
     def get_is_owner(self, obj):
         request = self.context['request']
