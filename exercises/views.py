@@ -17,15 +17,6 @@ class ExerciseList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
         
 
-    def get_queryset(self):
-        profile_id = self.request.query_params.get('profile_id')
-        queryset = super().get_queryset()
-        
-        if profile_id:
-            queryset = queryset.filter(owner__id=profile_id)
-
-        return queryset
-
 class ExerciseSpecific(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve and update an Exercise only if the user is

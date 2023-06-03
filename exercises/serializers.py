@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Exercise
-from django.contrib.auth.models import User
+
 
 class ExerciseSerializer(serializers.ModelSerializer):
     """
@@ -8,16 +8,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(),
-        source='owner.id',
-        required=False
-    )
-
-    def create(self, validated_data):
-        profile_id = validated_data.pop('owner')['id']
-        exercise = Exercise.objects.create(owner_id=profile_id, **validated_data)
-        return exercise
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
 
     def get_is_owner(self, obj):
         request = self.context['request']
